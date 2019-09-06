@@ -1,0 +1,45 @@
+
+# list
+ls
+
+# list inside directory
+ls address
+
+# access directory
+cd
+
+# access parent directory
+cd ..
+
+# go to home directory
+cd
+
+# create folder
+mkdir <folder_name>
+
+# create / edit file
+nano <name_file>
+
+# save
+ctrlt+o
+
+# leave editor
+ctrlt+x
+
+# copy & paste
+cp file address/file
+
+# move / rename
+mv file address/file
+
+# remove file
+rm filename
+
+# remove file with permission
+rm -i filename
+
+# remove empty directory
+rmdir directory
+
+# remove not empty directory
+rmdir -rf directory
