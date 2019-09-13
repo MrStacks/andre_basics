@@ -4,7 +4,7 @@
 #       - Learn the funnctions structures
 #       - Explain the relatiom with the theory
 #       - Check outputs on the fly
-
+########################
 
 # numpy is the fundamental package for scientific computing with Python.
 # h5py is a common package to interact with a dataset that is stored on an H5 file.
