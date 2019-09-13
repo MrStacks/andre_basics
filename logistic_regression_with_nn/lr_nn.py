@@ -25,3 +25,9 @@ from lr_utils import load_dataset
 # RUN
 if __name__ == "__main__":
     print("Logistic Regression with a NN")
+
+
+    train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
+    index = 25
+    plt.imshow(train_set_x_orig[index])
+    print ("y = " + str(train_set_y[:,index]) + ", it's a '" + classes[np.squeeze(train_set_y[:,index])].decode("utf-8") +  "' picture.")
