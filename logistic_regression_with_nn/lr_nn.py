@@ -19,7 +19,7 @@ from lr_utils import load_dataset
 if __name__ == "__main__":
     print("Logistic Regression with a NN")
 
-    Loading the dataset 
+    # Loading the dataset 
     train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
     
     # We added "_orig" at the end of image datasets (train and test) because we are going to preprocess them. 
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     ### START CODE HERE ### (≈ 3 lines of code)
     m_train = train_set_x_orig.shape[0]
     m_test = test_set_x_orig.shape[0]
-    num_px = num_px.shape[1]
+    num_px = train_set_x_orig.shape[1]
     ### END CODE HERE ###
 
     # print ("Number of training examples: m_train = " + str(m_train))
