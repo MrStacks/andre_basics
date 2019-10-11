@@ -1,32 +1,25 @@
 ###### OBJECTIVES ######
-# 1. Construct the Coursera Logistic Regression with a NN
-#       - Add task by task
-#       - Learn the funnctions structures
-#       - Explain the relatiom with the theory
-#       - Check outputs on the fly
+# Build the general architecture of a learning algorithm, including:
+# Initializing parameters
+# Calculating the cost function and its gradient
+# Using an optimization algorithm (gradient descent)
+# Gather all three functions above into a main model function, in the right order.
 ########################
 
-# numpy is the fundamental package for scientific computing with Python.
-# h5py is a common package to interact with a dataset that is stored on an H5 file.
-# matplotlib is a famous library to plot graphs in Python.
-# PIL and scipy are used here to test your model with your own picture at the end.
-import numpy as np
-import matplotlib.pyplot as plt
-import h5py
+import numpy as np # numpy is the fundamental package for scientific computing with Python.
+import matplotlib.pyplot as plt # matplotlib is a famous library to plot graphs in Python.
+import h5py # h5py is a common package to interact with a dataset that is stored on an H5 file.
 import scipy
 from PIL import Image
 from scipy import ndimage
 from lr_utils import load_dataset
-
-
-
-
+# PIL and scipy are used here to test your model with your own picture at the end.
 
 # RUN
 if __name__ == "__main__":
     print("Logistic Regression with a NN")
 
-    # Loading the dataset 
+    Loading the dataset 
     train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
     
     # We added "_orig" at the end of image datasets (train and test) because we are going to preprocess them. 
@@ -45,16 +38,148 @@ if __name__ == "__main__":
     # For instance, you can access m_train by writing train_set_x_orig.shape[0].
 
     ### START CODE HERE ### (≈ 3 lines of code)
-    m_train = None
-    m_test = None
-    num_px = None
+    m_train = train_set_x_orig.shape[0]
+    m_test = test_set_x_orig.shape[0]
+    num_px = num_px.shape[1]
     ### END CODE HERE ###
 
-    print ("Number of training examples: m_train = " + str(m_train))
-    print ("Number of testing examples: m_test = " + str(m_test))
-    print ("Height/Width of each image: num_px = " + str(num_px))
-    print ("Each image is of size: (" + str(num_px) + ", " + str(num_px) + ", 3)")
-    print ("train_set_x shape: " + str(train_set_x_orig.shape))
-    print ("train_set_y shape: " + str(train_set_y.shape))
-    print ("test_set_x shape: " + str(test_set_x_orig.shape))
-    print ("test_set_y shape: " + str(test_set_y.shape))
+    # print ("Number of training examples: m_train = " + str(m_train))
+    # print ("Number of testing examples: m_test = " + str(m_test))
+    # print ("Height/Width of each image: num_px = " + str(num_px))
+    # print ("Each image is of size: (" + str(num_px) + ", " + str(num_px) + ", 3)")
+    # print ("train_set_x shape: " + str(train_set_x_orig.shape))
+    # print ("train_set_y shape: " + str(train_set_y.shape))
+    # print ("test_set_x shape: " + str(test_set_x_orig.shape))
+    # print ("test_set_y shape: " + str(test_set_y.shape))
+
+
+# For convenience, you should now reshape images of shape (num_px, num_px, 3) in a numpy-array of shape (num_px $*$ num_px $*$ 3, 1). 
+# After this, our training (and test) dataset is a numpy-array where each column represents a flattened image. 
+# There should be m_train (respectively m_test) columns.
+
+# Exercise: Reshape the training and test data sets so that images of size (num_px, num_px, 3) are flattened into single vectors of shape (num_px $*$ num_px $*$ 3, 1).
+# A trick when you want to flatten a matrix X of shape (a,b,c,d) to a matrix X_flatten of shape (b$*$c$*$d, a) is to use:
+# X_flatten = X.reshape(X.shape[0], -1).T      # X.T is the transpose of X
+
+# Reshape the training and test examples
+
+### START CODE HERE ### (≈ 2 lines of code)
+train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T #KEITH: Ask about using reshape().T
+test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T
+### END CODE HERE ###
+
+print ("train_set_x_flatten shape: " + str(train_set_x_flatten.shape))
+print ("train_set_y shape: " + str(train_set_y.shape))
+print ("test_set_x_flatten shape: " + str(test_set_x_flatten.shape))
+print ("test_set_y shape: " + str(test_set_y.shape))
+print ("sanity check after reshaping: " + str(train_set_x_flatten[0:5,0]))
+
+# To represent color images, the red, green and blue channels (RGB) must be specified for each pixel, 
+# and so the pixel value is actually a vector of three numbers ranging from 0 to 255.
+# One common preprocessing step in machine learning is to center and standardize your dataset, 
+# meaning that you substract the mean of the whole numpy array from each example, 
+# and then divide each example by the standard deviation of the whole numpy array. 
+# But for picture datasets, it is simpler and more convenient and works almost as well to just 
+# divide every row of the dataset by 255 (the maximum value of a pixel channel).
+
+# Let's standardize our dataset.
+
+train_set_x = train_set_x_flatten / 255.
+test_set_x = test_set_x_flatten / 255.
+
+# 4.1 - Helper functions
+# Exercise: Using your code from "Python Basics", implement sigmoid(). 
+# As you've seen in the figure above, you need to compute  sigmoid(wTx+b)=11+e−(wTx+b) to make predictions. 
+# Use np.exp().
+
+# GRADED FUNCTION: sigmoid
+
+def sigmoid(z):
+    """
+    Compute the sigmoid of z
+
+    Arguments:
+    z -- A scalar or numpy array of any size.
+
+    Return:
+    s -- sigmoid(z)
+    """
+
+    ### START CODE HERE ### (≈ 1 line of code)
+    s = 1/(1 + np.exp(-z))
+    ### END CODE HERE ###
+    
+    return s
+
+# 4.2 - Initializing parameters
+# Exercise: Implement parameter initialization in the cell below. You have to initialize w as a vector of zeros. 
+# If you don't know what numpy function to use, look up np.zeros() in the Numpy library's documentation.
+
+def initialize_with_zeros(dim):
+    """
+    This function creates a vector of zeros of shape (dim, 1) for w and initializes b to 0.
+    
+    Argument:
+    dim -- size of the w vector we want (or number of parameters in this case)
+    
+    Returns:
+    w -- initialized vector of shape (dim, 1)
+    b -- initialized scalar (corresponds to the bias)
+    """
+    
+    ### START CODE HERE ### (≈ 1 line of code)
+    w = np.zeros(shape=(dim, 1)) #KEITH: why do we need the shape=(dim, 1) ???
+    b = 0
+    ### END CODE HERE ###
+
+    assert(w.shape == (dim, 1))
+    assert(isinstance(b, float) or isinstance(b, int))
+    
+    return w, b
+
+# 4.3 - Forward and Backward propagation
+# Now that your parameters are initialized, you can do the "forward" and "backward" propagation steps for learning the parameters.
+# Exercise: Implement a function propagate() that computes the cost function and its gradient.
+
+def propagate(w, b, X, Y):
+    """
+    Implement the cost function and its gradient for the propagation explained above
+
+    Arguments:
+    w -- weights, a numpy array of size (num_px * num_px * 3, 1)
+    b -- bias, a scalar
+    X -- data of size (num_px * num_px * 3, number of examples)
+    Y -- true "label" vector (containing 0 if non-cat, 1 if cat) of size (1, number of examples)
+
+    Return:
+    cost -- negative log-likelihood cost for logistic regression
+    dw -- gradient of the loss with respect to w, thus same shape as w
+    db -- gradient of the loss with respect to b, thus same shape as b
+    
+    Tips:
+    - Write your code step by step for the propagation. np.log(), np.dot()
+    """
+    
+    m = X.shape[1]
+    
+    # FORWARD PROPAGATION (FROM X TO COST)
+    ### START CODE HERE ### (≈ 2 lines of code)
+    A = None                                    # compute activation
+    cost = None                                 # compute cost
+    ### END CODE HERE ###
+    
+    # BACKWARD PROPAGATION (TO FIND GRAD)
+    ### START CODE HERE ### (≈ 2 lines of code)
+    dw = None
+    db = None
+    ### END CODE HERE ###
+
+    assert(dw.shape == w.shape)
+    assert(db.dtype == float)
+    cost = np.squeeze(cost)
+    assert(cost.shape == ())
+    
+    grads = {"dw": dw,
+             "db": db}
+    
+    return grads, cost

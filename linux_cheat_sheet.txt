@@ -6,7 +6,7 @@ ls
 ls address
 
 # access directory
-cd
+cd /folder_name
 
 # access parent directory
 cd ..
