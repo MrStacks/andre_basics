@@ -3,13 +3,9 @@ Hours ($25/hours)~($20/hours)
 ############################## 
 
 August 23 - 1.5 Hours
-
 Sept 6 - 2 Hours
-
 Sept 13 - 2 Hours
-
 Sept 25 - 1 Hour
-
 October 11 - 1.5 Hour
 
 ##############################
@@ -18,3 +14,4 @@ SETTLED - $160 - October 11th
 ##############################
 
 October 11 - +0.5 Hour
+October 18 - 1.75 Hour
