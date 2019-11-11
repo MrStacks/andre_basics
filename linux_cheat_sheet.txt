@@ -1,4 +1,3 @@
-
 # list
 ls
 
@@ -36,7 +35,7 @@ mv file address/file
 rm filename
 
 # remove file with permission
-rm -i filename
+rm -i filename.   *isn't this "sudo rm"??
 
 # remove empty directory
 rmdir directory
