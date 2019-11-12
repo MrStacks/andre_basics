@@ -6,6 +6,7 @@
 # Gather all three functions above into a main model function, in the right order.
 ########################
 
+# coding: utf-8
 import numpy as np # numpy is the fundamental package for scientific computing with Python.
 import matplotlib.pyplot as plt # matplotlib is a famous library to plot graphs in Python.
 import h5py # h5py is a common package to interact with a dataset that is stored on an H5 file.
@@ -37,7 +38,7 @@ if __name__ == "__main__":
     # Remember that train_set_x_orig is a numpy-array of shape (m_train, num_px, num_px, 3). 
     # For instance, you can access m_train by writing train_set_x_orig.shape[0].
 
-    ### START CODE HERE ### (≈ 3 lines of code)
+    ### START CODE HERE ### ( 3 lines of code)
     m_train = train_set_x_orig.shape[0]
     m_test = test_set_x_orig.shape[0]
     num_px = train_set_x_orig.shape[1]
@@ -63,7 +64,7 @@ if __name__ == "__main__":
 
 # Reshape the training and test examples
 
-### START CODE HERE ### (≈ 2 lines of code)
+### START CODE HERE ### ( 2 lines of code)
 train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T #KEITH: Ask about using reshape().T
 test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T
 ### END CODE HERE ###
@@ -105,7 +106,7 @@ def sigmoid(z):
     s -- sigmoid(z)
     """
 
-    ### START CODE HERE ### (≈ 1 line of code)
+    ### START CODE HERE ### ( 1 line of code)
     s = 1/(1 + np.exp(-z))
     ### END CODE HERE ###
     
@@ -127,7 +128,7 @@ def initialize_with_zeros(dim):
     b -- initialized scalar (corresponds to the bias)
     """
     
-    ### START CODE HERE ### (≈ 1 line of code)
+    ### START CODE HERE ### ( 1 line of code)
     w = np.zeros(shape=(dim, 1)) #KEITH: why do we need the shape=(dim, 1) ???
     b = 0
     ### END CODE HERE ###
@@ -163,13 +164,13 @@ def propagate(w, b, X, Y):
     m = X.shape[1]
     
     # FORWARD PROPAGATION (FROM X TO COST)
-    ### START CODE HERE ### (≈ 2 lines of code)
+    ### START CODE HERE ### (  2 lines of code)
     A = None                                    # compute activation
     cost = None                                 # compute cost
     ### END CODE HERE ###
     
     # BACKWARD PROPAGATION (TO FIND GRAD)
-    ### START CODE HERE ### (≈ 2 lines of code)
+    ### START CODE HERE ### (  2 lines of code)
     dw = None
     db = None
     ### END CODE HERE ###
