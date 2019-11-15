@@ -16,3 +16,4 @@ SETTLED - $160 - October 11th
 October 11 - +0.5 Hour
 October 18 - 1.75 Hour
 November 11 - 2.0 Hour
+November 15 - 1.5 Hour
