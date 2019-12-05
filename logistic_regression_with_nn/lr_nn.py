@@ -21,7 +21,7 @@ if __name__ == "__main__":
     print("Logistic Regression with a NN")
 
     # Loading the dataset
-    train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
+    train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset() # load_dataset() is a VERY important function
 
     # We added "_orig" at the end of image datasets (train and test) because we are going to preprocess them.
     # After preprocessing, we will end up with train_set_x and test_set_x (the labels train_set_y and test_set_y don't need any preprocessing).
