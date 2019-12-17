@@ -67,7 +67,7 @@ if __name__ == "__main__":
 # Reshape the training and test examples
 
 ### START CODE HERE ### ( 2 lines of code)
-train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T #KEITH: Ask about using reshape().T
+train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T # KEITH: Ask about using reshape().T
 test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T
 ### END CODE HERE ###
 
