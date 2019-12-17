@@ -12,40 +12,42 @@ conda activate xxxx\
 \
 python\
 \
-import numpy as np\
+import numpy as np\
 import h5py\
-\
->>> train_dataset = h5py.File('datasets/train_catvnoncat.h5', "r")\
->>> train_dataset.keys()\
->>> train_set_x_orig = np.array(train_dataset["train_set_x"][:])\
+\
+train_dataset = h5py.File('datasets/train_catvnoncat.h5', "r")\
+train_dataset.keys()\
+\
+train_set_x_orig = np.array(train_dataset["train_set_x"][:])\
+\
 n dimensional array \'97 4 dimensional NumPy array \'97 it can be any dimension\
-\
+\
 >>> train_set_x_org\
->>> train_set_x_orig.shape\
-(209, 64, 64, 3)\
->>> train_set_y_orig = np.array(train_dataset["train_set_y"][:])\
->>> train_set_y_orig\
->>> train_set_y_orig.shape\
-(209,)\
->>> train_set_y_orig = train_set_y_orig.reshape((1, train_set_y_orig.shape[0]))\
+>>> train_set_x_orig.shape\
+(209, 64, 64, 3) # THIS IS THE ORIGINAL\
+>>> train_set_y_orig = np.array(train_dataset["train_set_y"][:])\
 >>> train_set_y_orig\
->>> train_set_y_orig.shape\
+>>> train_set_y_orig.shape\
+(209,)\
+>>> train_set_y_orig = train_set_y_orig.reshape((1, train_set_y_orig.shape[0]))\
+>>> train_set_y_orig\
+>>> train_set_y_orig.shape\
 (1, 209)\
 >>> train_set_y_orig.shape[K = train_set_y_orig.reshape((1, train_set_y_orig.shape[0]))\
->>> train_set_y_orig.shape\
-(209,)\
->>> train_set_y_orig[]0]\
-0\
+>>> train_set_y_orig.shape\
+(209,)\
+>>> train_set_y_orig[]0]\
+0\
 >>> train_set_y_orig[0].shape = np.array(train_dataset["train_set_y"][:])\
 >>> train_set_y_orig = train_set_y_orig.reshape((1, train_set_y_orig.shape[0]))\
->>> train_set_y_orig[0][0]\
-0\
->>> train_set_y_orig[0][0][1P]3]\
-0\
->>> train_set_y_orig[0][3][1P]0][1P][0]3][0][1P][0]0][0][C[C[C[1P]2]\
-1\
+>>> train_set_y_orig[0][0]\
+0\
+>>> train_set_y_orig[0][0][1P]3]\
+0\
+>>> train_set_y_orig[0][3][1P]0][1P][0]3][0][1P][0]0][0][C[C[C[1P]2]\
+1\
 >>> train_set_y_orig[0][2]\
->>> classr[Kes\
-array([b'non-cat', b'cat'], dtype='|S7')\
+>>> classr[Kes\
+array([b'non-cat', b'cat'], dtype='|S7')\
 >>> \
 }

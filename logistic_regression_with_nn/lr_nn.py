@@ -29,7 +29,8 @@ if __name__ == "__main__":
     # Example of a picture
     index = 25
     plt.imshow(train_set_x_orig[index])
-    print ("y = " + str(train_set_y[:,index]) + ", it's a '" + classes[np.squeeze(train_set_y[:,index])].decode("utf-8") +  "' picture.")
+    print ("y = " + str(train_set_y[:,index]) + ", it's a '"
+           + classes[np.squeeze(train_set_y[:,index])].decode("utf-8") +  "' picture.")
 
     # Many software bugs in deep learning come from having matrix/vector dimensions that don't fit.
     # If you can keep your matrix/vector dimensions straight you will go a long way toward eliminating many bugs.
@@ -58,14 +59,15 @@ if __name__ == "__main__":
 # After this, our training (and test) dataset is a numpy-array where each column represents a flattened image.
 # There should be m_train (respectively m_test) columns.
 
-# Exercise: Reshape the training and test data sets so that images of size (num_px, num_px, 3) are flattened into single vectors of shape (num_px $*$ num_px $*$ 3, 1).
-# A trick when you want to flatten a matrix X of shape (a,b,c,d) to a matrix X_flatten of shape (b$*$c$*$d, a) is to use:
+# Exercise: Reshape the training and test data sets so that images of size (num_px, num_px, 3)
+# are flattened into single vectors of shape (num_px * num_px * 3, 1).
+# A trick when you want to flatten a matrix X of shape (a,b,c,d) to a matrix X_flatten of shape (b*c*d, a) is to use:
 # X_flatten = X.reshape(X.shape[0], -1).T      # X.T is the transpose of X
 
 # Reshape the training and test examples
 
 ### START CODE HERE ### ( 2 lines of code)
-train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T #KEITH: Ask about using reshape().T
+train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T # KEITH: Ask about using reshape().T
 test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T
 ### END CODE HERE ###
 
