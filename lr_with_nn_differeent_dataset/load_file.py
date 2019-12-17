@@ -8,4 +8,10 @@ def unpickle(file):
     import pickle
     with open(file, 'rb') as fo:
         dict = pickle.load(fo, encoding='bytes')
-    return dict
+
+    for x in dict:
+        print(x)
+    # print(len(dict))
+    print(dict[b'batch_label'])
+
+    # return dict

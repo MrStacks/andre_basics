@@ -8,7 +8,3 @@ if __name__ == "__main__":
 
     # Loading the dataset
     dict_datase = unpickle("datasets/data_batch_1")
-    for x in dict_datase:
-        print(x)
-    # print(len(dict_datase))
-    print(dict_datase[b'data'][0].size)
