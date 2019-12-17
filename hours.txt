@@ -17,4 +17,12 @@ October 11 - +0.5 Hour
 October 18 - 1.75 Hour
 November 11 - 2.0 Hour
 November 15 - 1.5 Hour
-December 5 - 1hour
+December 5 - 1 hour
+Dec 17 - 2.5 hour
+
+##############################
+TOTAL - 8h * $20/h = $160
+SETTLED - $165 - October 11th
+
+REMAINING: $20
+##############################
